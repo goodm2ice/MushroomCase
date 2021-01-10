@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Global\GCM.cs" />
     <Compile Include="Assets\Scripts\Global\Types\RangedValue.cs" />
     <Compile Include="Assets\Scripts\Global\Types\ValueRange.cs" />
     <Compile Include="Assets\Scripts\PlayerCamera.cs" />
