@@ -10,8 +10,11 @@ public class PlayerCamera : MonoBehaviour
     public RangedValue distance = new RangedValue(3, 12, 8);
     public RangedValue horizontalAngle = new RangedValue(0, 75, 60);
     public float yAngle = 180;
-    public Vector3 rotationSpeed = new Vector3(2, 2, 2);
+    public Vector2 rotationSpeed = new Vector2(2, 2);
     public Vector2 moveSpeed = new Vector2(2, 1);
+
+    public bool rotateWithPlayer = false;
+    public float playerRotationSpeed = 2;
 
     private Transform yAxis;
     private Transform hAxis;
@@ -38,7 +41,8 @@ public class PlayerCamera : MonoBehaviour
     {
         #region Привязка к позиции и повороту персонажа
         transform.position = Vector3.Lerp(transform.position, player.position, Time.deltaTime * moveSpeed.x);
-        transform.rotation = Quaternion.Lerp(transform.rotation, player.rotation, Time.deltaTime * rotationSpeed.z);
+        if(rotateWithPlayer)
+            transform.rotation = Quaternion.Lerp(transform.rotation, player.rotation, Time.deltaTime * playerRotationSpeed);
         #endregion
 
         if (Input.GetButton(GCM.Get("ResetCameraBtn")))
