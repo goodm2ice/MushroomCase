@@ -10,10 +10,12 @@ public class GCM : MonoBehaviour
         public string name, value;
     }
 
+    public static Dictionary<string, string> consts = new Dictionary<string, string>();
+    public static string DefaultString = "Undefined";
+
     [SerializeField]
     private List<Constant> _consts;
 
-    private static Dictionary<string, string> consts = new Dictionary<string, string>();
 
     void Awake()
     {
@@ -21,7 +23,7 @@ public class GCM : MonoBehaviour
             consts[c.name] = c.value;
     }
 
-    public static string Get(string name) {
-        return consts[name] ?? "Undefined";
-    }
+    public static string Get(string name) => consts[name] ?? DefaultString;
+
+    public static T Get<T>(string name, T _default = default(T)) => GMM.ParseOr<T>(Get(name), _default);
 }
