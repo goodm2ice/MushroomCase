@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour
     public Transform player;
 
     public RangedValue distance = new RangedValue(3, 12, 8);
-    public RangedValue horizontal = new RangedValue(0, 75, 60);
+    public RangedValue horizontalAngle = new RangedValue(0, 75, 60);
     public float yAngle = 180;
     public Vector3 rotationSpeed = new Vector3(2, 2, 2);
     public Vector2 moveSpeed = new Vector2(2, 1);
@@ -18,21 +18,12 @@ public class PlayerCamera : MonoBehaviour
     private Transform cameraOrigin;
     private Vector3 initialValues;
 
-    [SerializeField]
-    private string axisCameraX = "Camera X";
-    [SerializeField]
-    private string axisCameraY = "Camera Y";
-    [SerializeField]
-    private string axisRotateCamera = "Rotate Camera";
-    [SerializeField]
-    private string axisScaleCamera = "Scale Camera";
-
     void Start()
     {
         if (player == null)
         {
-            Transform playerOrigin = GameObject.FindGameObjectWithTag("Player").transform;
-            player = playerOrigin.Find("CamTarget") ?? playerOrigin;
+            Transform playerOrigin = GameObject.FindGameObjectWithTag(GCM.Get("PlayerTag")).transform;
+            player = playerOrigin.Find(GCM.Get("PlayerCamTargetName")) ?? playerOrigin;
         }
 
         yAxis = yAxis ?? transform.GetChild(0);
@@ -40,7 +31,7 @@ public class PlayerCamera : MonoBehaviour
         cameraOrigin = cameraOrigin ?? hAxis.GetChild(0);
 
         hAxis.localPosition = Vector3.zero;
-        initialValues = new Vector3(horizontal.cur, yAngle, distance.cur);
+        initialValues = new Vector3(horizontalAngle.cur, yAngle, distance.cur);
     }
 
     void FixedUpdate()
@@ -50,30 +41,29 @@ public class PlayerCamera : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, player.rotation, Time.deltaTime * rotationSpeed.z);
         #endregion
 
-        if (Input.GetButton("Reset Camera"))
+        if (Input.GetButton(GCM.Get("ResetCameraBtn")))
         {
-            horizontal.cur = initialValues.x;
+            horizontalAngle.cur = initialValues.x;
             yAngle = initialValues.y;
             distance.cur = initialValues.z;
         }
 
         #region Установка расстояния от объекта до камеры
-        if (Input.GetAxis(axisScaleCamera) != 0)
-            distance.cur += Input.GetAxis(axisScaleCamera);
+        distance.cur += Input.GetAxis(GCM.Get("ScaleCameraAxis"));
         Vector3 dD = Vector3.up * distance.cur;
         cameraOrigin.localPosition = Vector3.Lerp(cameraOrigin.localPosition, dD, Time.deltaTime * moveSpeed.y);
         cameraOrigin.LookAt(player);
         #endregion
 
         #region Поворот камеры
-        if (Input.GetButton(axisRotateCamera))
+        if (Input.GetButton(GCM.Get("RotateCameraBtn")))
         {
-            horizontal.cur += Input.GetAxis(axisCameraY);
-            yAngle += Input.GetAxis(axisCameraX);
+            horizontalAngle.cur += Input.GetAxis(GCM.Get("CameraYAxis"));
+            yAngle += Input.GetAxis(GCM.Get("CameraXAxis"));
         }
 
         // Поворот камеры под углом к горизонту
-        Quaternion dH = Quaternion.AngleAxis(horizontal.cur, Vector3.right);
+        Quaternion dH = Quaternion.AngleAxis(horizontalAngle.cur, Vector3.right);
         hAxis.localRotation = Quaternion.Slerp(hAxis.localRotation, dH, Time.deltaTime * rotationSpeed.y);
 
         // Поворот камеры вокруг точки
