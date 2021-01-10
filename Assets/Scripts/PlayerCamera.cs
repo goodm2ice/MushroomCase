@@ -25,15 +25,15 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.localPosition = new Vector3(0, distance, 0);
-        transform.LookAt(hAxis);
-        hAxis.localRotation = Quaternion.Euler(hValue.cur / (float)Math.PI, 0, 0);
-        yAxis.localRotation = Quaternion.Euler(0, yAngle / (float)Math.PI, 0);
-
         if (Input.GetButton("Rotate Camera"))
         {
             hValue.cur -= Input.GetAxis("Camera Y");
             yAngle += Input.GetAxis("Camera X");
         }
+
+        transform.localPosition = new Vector3(0, distance, 0);
+        transform.LookAt(hAxis);
+        hAxis.localRotation = Quaternion.Euler(hValue.cur / (float)Math.PI, 0, 0);
+        yAxis.localRotation = Quaternion.Euler(0, yAngle / (float)Math.PI, 0);
     }
 }
