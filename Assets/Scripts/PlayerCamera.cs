@@ -42,9 +42,8 @@ public class PlayerCamera : MonoBehaviour
             yAngle += Input.GetAxis(axisCameraX);
         }
 
-        if(Input.GetAxis(axisScaleCamera) != 0) {
+        if(Input.GetAxis(axisScaleCamera) != 0)
             distance.cur += Input.GetAxis(axisScaleCamera);
-        }
 
         transform.position = Vector3.Lerp(transform.position, player.position, Time.deltaTime * speed.w);
 
