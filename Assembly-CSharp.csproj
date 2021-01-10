@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Global\Types\RangedValue.cs" />
     <Compile Include="Assets\Scripts\Global\Types\ValueRange.cs" />
     <Compile Include="Assets\Scripts\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Reference Include="UnityEngine">
       <HintPath>G:/Program Files/Unity/2019.4.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
