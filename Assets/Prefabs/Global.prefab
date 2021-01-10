@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2068248902194931151}
-  - component: {fileID: 2068248902194931150}
+  - component: {fileID: 7979706831797431895}
   m_Layer: 0
   m_Name: Global
   m_TagString: Untagged
@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068248902194931145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.1577196, y: 2.4450583, z: 11.462389}
+  m_LocalPosition: {x: 5.274552, y: 3.5344472, z: 13.525675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2068248902194931150
+--- !u!114 &7979706831797431895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,23 +44,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _consts:
-  - name: CameraXAxis
-    value: Camera X
-  - name: CameraYAxis
-    value: Camera Y
-  - name: RotateCameraBtn
-    value: Rotate Camera
-  - name: ResetCameraBtn
-    value: Reset Camera
-  - name: ScaleCameraAxis
-    value: Scale Camera
   - name: PlayerTag
     value: Player
   - name: PlayerCamTargetName
     value: CamTarget
-  - name: 
-    value: 
-  - name: 
-    value: 
-  - name: 
-    value: 
+  - name: ResetCameraBtn
+    value: Reset Camera
+  - name: ScaleCameraAxis
+    value: Scale Camera
+  - name: RotateCameraBtn
+    value: Rotate Camera
+  - name: CameraYAxis
+    value: Camera Y
+  - name: CameraXAxis
+    value: Camera X
