@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &1113935648 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7353989497642796967, guid: 681118ee4db96c74996aa2b3cdc083cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5414083289360297466}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1433531932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,7 +319,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 30
+  m_CookingOptions: -1
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1480926424
 MeshRenderer:
@@ -507,6 +513,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5414083289744017162, guid: 681118ee4db96c74996aa2b3cdc083cc,
+        type: 3}
+      propertyPath: head
+      value: 
+      objectReference: {fileID: 1113935648}
     - target: {fileID: 5414083289744017173, guid: 681118ee4db96c74996aa2b3cdc083cc,
         type: 3}
       propertyPath: m_Name
