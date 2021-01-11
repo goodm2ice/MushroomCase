@@ -3,17 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMove : MonoBehaviour {
     public float runSpeed = 4;
     public float forwardSpeed = 2;
     public float backwardSpeed = 0.75f;
     public float rotationSpeed = 100;
-    public Animator playerAnimator;
+    public bool lookAtCamera = false;
+
+    private Animator playerAnimator;
+    private Transform head;
+    private Transform camera;
 
     private void Start()
     {
-        playerAnimator = playerAnimator ?? transform.GetComponentInChildren<Animator>();
+        playerAnimator = transform.GetComponentInChildren<Animator>();
+        head = transform.Find("Head").parent;
+        camera = GameObject.Find("PlayerCamera").GetComponentInChildren<Camera>().transform;
     }
 
     void FixedUpdate()
@@ -28,5 +35,8 @@ public class PlayerMove : MonoBehaviour {
         Vector3 dP = transform.forward * rawV;
         transform.position += dP * Time.deltaTime;
         transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime);
+
+        if(head && camera && lookAtCamera)
+            head.LookAt(camera);
     }
 }
